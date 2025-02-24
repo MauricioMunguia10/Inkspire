@@ -6,6 +6,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import SettingsIcon from '@mui/icons-material/Settings';
 import BlogCard from "../../components/BlogCard/BlogCard";
 import HashTagExplore from "../../components/HashTagExplore/HashTagExplore";
+import WhoToFollow  from "../../components/WhoToFollowCard/WhoToFollowCard";
+
 
 const Dashboard = () => {
   const [hasText, setHasText] = useState(false)
@@ -81,7 +83,15 @@ const Dashboard = () => {
 
         </div>
 
-        <div className={styles.rightContainer}></div>
+        <div className={styles.rightContainer}>
+           <div className={styles.whoToFollowContainer}>
+            <p className={styles.titleWTF}>Recomendados</p>
+            <WhoToFollow imgURL="https://pbs.twimg.com/profile_images/1877466471686684672/8PJsUiB__400x400.jpg"></WhoToFollow>
+            <WhoToFollow imgURL="https://pbs.twimg.com/profile_images/1592560747707600897/6_8AjTmK_400x400.jpg"></WhoToFollow>
+            <WhoToFollow imgURL="https://pbs.twimg.com/profile_images/1754606338460487681/bWupXdxo_400x400.jpg"></WhoToFollow>
+           </div>
+        </div>
+        
       </div>
     );
   };
