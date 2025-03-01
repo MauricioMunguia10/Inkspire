@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import styles from "./Sidebar.module.css";
+import styles from "./SideBar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import SettingsIcon from "@mui/icons-material/Settings";
