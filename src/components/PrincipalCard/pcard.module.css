@@ -1,0 +1,19 @@
+.container {
+  height: 100%;
+  width: 100%;
+}
+.title {
+  position: relative;
+  top: 20px;
+  left: 100px;
+  font-size: 32px;
+  font-weight: 500;
+}
+.text{
+  position: relative;
+  top: 50px;
+  left: 40px;
+  width: calc(100% - 80px);
+  font-size: 20px;
+  font-weight: 300;
+}

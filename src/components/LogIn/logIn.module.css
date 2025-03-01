@@ -1,0 +1,30 @@
+.container {
+  height: 100%;
+  width: 100%;
+}
+.title {
+  position: relative;
+  top: 20px;
+  left: 100px;
+  font-size: 32px;
+  font-weight: 500;
+}
+.column {
+  position: relative;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  position: relative;
+
+  height: 30px;
+  width: 300px;
+}
+.button {
+  position: relative;
+  top: 20px;
+  left: calc(50% - 200px);
+  width: 300px;
+}

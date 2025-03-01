@@ -1,0 +1,96 @@
+.container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.menu {
+  position: absolute;
+  left: calc(50% - 500px);
+  background-color: white;
+  width: 1000px;
+  height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  font-size: 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.menuButton {
+  position: relative;
+  top: 20px;
+  cursor: pointer;
+}
+.half {
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.left {
+  background-color: black;
+}
+
+.right {
+  background-color: white;
+}
+.imageWhite {
+  position: absolute;
+  top: calc(50vh - 100px);
+  left: calc(50vw - 400px);
+  height: 200px;
+  width: 200px;
+}
+.imageBlack {
+  position: absolute;
+  top: calc(50vh - 100px);
+  left: calc(50vw + 200px);
+  height: 200px;
+  width: 200px;
+}
+.logoFull {
+  position: relative;
+  top: 10px;
+  left: 0px;
+  height: 50px;
+}
+.none {
+  display: none;
+}
+.block {
+  display: block;
+}
+
+.moduleRight {
+  position: absolute;
+  top: 130px;
+  left: calc(50vw - 500px);
+  height: 500px;
+  width: 400px;
+  background-color: white;
+  border-radius: 50px;
+}
+.moduleCenter {
+  position: absolute;
+  top: 150px;
+  left: calc(50vw - 300px);
+  height: 400px;
+  width: 600px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+  border-radius: 50px;
+}
+.moduleLeft {
+  position: absolute;
+  top: 130px;
+  left: calc(50vw + 100px);
+  height: 500px;
+  width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 50px;
+}
