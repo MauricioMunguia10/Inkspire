@@ -48,6 +48,7 @@ const Home = () => {
           })}
         >
           <img src="/logoWhite.png" alt="LogoWhite" width={200} />
+          <img src="/nameWhite.png" alt="NameWhite" width={200} />
         </div>
         <div
           className={clsx({
@@ -56,6 +57,7 @@ const Home = () => {
           })}
         >
           <img src="/logoBlack.png" alt="LogoBlack" width={200} />
+          <img src="/nameBlack.png" alt="NameBlack" width={200} />
         </div>
       </div>
       <div
