@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = ({ sendData }) => {
-  const API_URL = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [inputs, setInputs] = useState([
     { id: 1, name: "name", label: "Nombre", class: "input", value: "" },
     { id: 2, name: "user", label: "Usuario", class: "input", value: "" },
@@ -75,7 +75,7 @@ const SignIn = ({ sendData }) => {
   };
 
   const handleRegister = async () => {
-    const response = await fetch(`${API_URL}/users`, {
+    const response = await fetch(`${apiUrl}/api/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
