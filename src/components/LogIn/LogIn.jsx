@@ -1,6 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@mui/joy";
 import styles from "./logIn.module.css";
-const LogIn = () => {
+const LogIn = ({ sendData }) => {
+  const handleChangeSignIn = () => {
+    sendData(3);
+  };
   return (
     <div className={styles.container}>
       <p className={styles.title}>¡BIENVENIDO!</p>
@@ -10,6 +14,9 @@ const LogIn = () => {
         <p>Contraseña</p>
         <input className={styles.input}></input>
         <Button className={styles.button}>Iniciar Sesión</Button>
+        <p className={styles.textLink} onClick={handleChangeSignIn}>
+          ¿No tienes cuenta? Regístrate
+        </p>
       </div>
     </div>
   );

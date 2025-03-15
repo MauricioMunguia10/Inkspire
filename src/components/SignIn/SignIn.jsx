@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@mui/joy";
 import styles from "./signIn.module.css";
 import { useState } from "react";
@@ -5,7 +6,7 @@ import { toast } from "react-toastify";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 
-const SignIn = () => {
+const SignIn = ({ sendData }) => {
   const API_URL = import.meta.env.VITE_API_URL;
   const [inputs, setInputs] = useState([
     { id: 1, name: "name", label: "Nombre", class: "input", value: "" },
@@ -46,6 +47,9 @@ const SignIn = () => {
   const [userAlert, setUserAlert] = useState(false);
   const [voidAlert, setVoidAlert] = useState(false);
   const navigate = useNavigate();
+  const handleChangeLogIn = () => {
+    sendData(2);
+  };
 
   const handleChange = (name, newValue) => {
     if (name == "email") {
@@ -140,7 +144,9 @@ const SignIn = () => {
         <Button className={styles.button} onClick={handleRegister}>
           Registrarse
         </Button>
-        <p className={styles.textLink}>¿Ya tienes una cuenta?</p>
+        <p className={styles.textLink} onClick={handleChangeLogIn}>
+          ¿Ya tienes una cuenta?
+        </p>
       </div>
     </div>
   );

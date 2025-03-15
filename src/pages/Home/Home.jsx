@@ -10,6 +10,9 @@ const Home = () => {
   const handleChangeScreen = (arg) => {
     setScreen(arg);
   };
+  const handleChangeSection = (arg) => {
+    setScreen(arg);
+  };
   return (
     <>
       <div className={styles.container}>
@@ -66,7 +69,7 @@ const Home = () => {
           [styles.moduleRight]: screen === 3,
         })}
       >
-        <SignIn />
+        <SignIn sendData={handleChangeSection} />
       </div>
       <div
         className={clsx({
@@ -82,7 +85,7 @@ const Home = () => {
           [styles.moduleLeft]: screen === 2,
         })}
       >
-        <LogIn />
+        <LogIn sendData={handleChangeSection} />
       </div>
     </>
   );
