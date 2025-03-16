@@ -17,14 +17,60 @@
   flex-direction: column;
 }
 .input {
-  position: relative;
-
   height: 30px;
   width: 300px;
+  border: none;
+  border: 2px solid gray;
+  outline: none;
+  background-color: transparent;
+  transition: border-bottom 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+.input:focus {
+  border: 2px solid blue;
+  box-shadow: 0 2px 5px rgba(0, 0, 255, 0.5);
+}
+.inputAlert {
+  border: 2px solid red;
+  box-shadow: 0 2px 5px rgba(255, 0, 0, 0.5);
 }
 .button {
   position: relative;
   top: 20px;
   left: calc(50% - 200px);
   width: 300px;
+}
+.textLinkPassword {
+  position: relative;
+  top: 10px;
+  left: 55px;
+  width: fit-content;
+  color: rgb(211, 95, 17);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.textLinkPassword:hover {
+  scale: 1.05;
+}
+.textLink {
+  position: relative;
+  top: 30px;
+  left: 45px;
+  width: fit-content;
+  color: rgb(182, 60, 60);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.textLink:hover {
+  scale: 1.05;
+}
+.passwordIcon {
+  position: relative;
+  top: -22px;
+  left: 270px;
+  cursor: pointer;
+}
+.none {
+  display: none;
 }

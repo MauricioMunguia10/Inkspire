@@ -5,6 +5,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
 
 const SignIn = ({ sendData }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -44,16 +45,44 @@ const SignIn = ({ sendData }) => {
     active: "1",
   });
   const [emailAlert, setEmailAlert] = useState(false);
+  const [secondEmailAlert, setSecondEmailAlert] = useState(false);
   const [userAlert, setUserAlert] = useState(false);
   const [voidAlert, setVoidAlert] = useState(false);
+  const [passwordAlert, setPasswordAlert] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [showPassword, setShowPassword] = useState({});
   const navigate = useNavigate();
   const handleChangeLogIn = () => {
     sendData(2);
   };
+  const togglePasswordVisibility = (name) => {
+    setShowPassword((prev) => ({
+      ...prev,
+      [name]: true,
+    }));
+    setTimeout(() => {
+      setShowPassword((prev) => ({
+        ...prev,
+        [name]: false,
+      }));
+    }, 2500);
+  };
 
   const handleChange = (name, newValue) => {
+    if (name == "passwordCheck") {
+      setPasswordCheck(newValue.trim());
+      setPasswordAlert(false);
+    }
+    if (name == "password") {
+      setPassword(newValue.trim());
+      setPasswordAlert(false);
+    }
+
     if (name == "email") {
       setEmailAlert(false);
+    } else if (name == "second_email") {
+      setSecondEmailAlert(false);
     } else if (name == "user") {
       setUserAlert(false);
     } else {
@@ -62,20 +91,53 @@ const SignIn = ({ sendData }) => {
 
     setInputs((prevInputs) =>
       prevInputs.map((input) =>
-        input.name === name ? { ...input, value: newValue } : input
+        input.name === name ? { ...input, value: newValue.trim() } : input
       )
     );
 
     if (name in data) {
       setData((prevData) => ({
         ...prevData,
-        [name]: newValue,
+        [name]: newValue.trim(),
       }));
     }
   };
 
   const handleRegister = async () => {
-    const response = await fetch(`${apiUrl}/api/users`, {
+    if (
+      !data.name ||
+      !data.user ||
+      !data.email ||
+      !data.second_email ||
+      !data.password ||
+      !passwordCheck
+    ) {
+      sendNotification("Todos los datos son obligatorios", 2);
+      setVoidAlert(true);
+      return;
+    }
+    if (password != passwordCheck) {
+      sendNotification("Las contraseñas no coinciden", 2);
+      setPasswordAlert(true);
+      return;
+    }
+    if (data.email == data.second_email) {
+      sendNotification("Los correos no pueden ser el mismo", 2);
+      setEmailAlert(true);
+      setSecondEmailAlert(true);
+      return;
+    }
+    if (!validateEmail(data.email)) {
+      sendNotification("No es un correo valido", 2);
+      setEmailAlert(true);
+      return;
+    }
+    if (!validateEmail(data.second_email)) {
+      sendNotification("No es un correo valido", 2);
+      setSecondEmailAlert(true);
+      return;
+    }
+    const response = await fetch(`${apiUrl}/api/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -120,6 +182,10 @@ const SignIn = ({ sendData }) => {
       });
     }
   };
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   return (
     <div className={styles.container}>
@@ -129,16 +195,40 @@ const SignIn = ({ sendData }) => {
           <div key={input.id}>
             <p>{input.label}</p>
             <input
+              type={
+                input.name === "password" || input.name === "passwordCheck"
+                  ? showPassword[input.name]
+                    ? "text"
+                    : "password"
+                  : "text"
+              }
               className={clsx(styles[input.class], {
                 [styles.inputAlert]:
                   voidAlert ||
                   emailAlert & (input.name == "email") ||
-                  userAlert & (input.name == "user"),
+                  secondEmailAlert & (input.name == "second_email") ||
+                  userAlert & (input.name == "user") ||
+                  passwordAlert &
+                    (input.name == "password" || input.name == "passwordCheck"),
               })}
               name={input.name}
               value={input.value}
               onChange={(e) => handleChange(input.name, e.target.value)}
             />
+            <span
+              className={clsx(styles.icon, {
+                [styles.passwordIcon]:
+                  input.name === "password" || input.name === "passwordCheck",
+                [styles.none]: !(
+                  input.name === "password" || input.name === "passwordCheck"
+                ),
+              })}
+            >
+              <FaEye
+                color="gray"
+                onClick={() => togglePasswordVisibility(input.name)}
+              />
+            </span>
           </div>
         ))}
         <Button className={styles.button} onClick={handleRegister}>

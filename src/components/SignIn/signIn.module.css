@@ -52,6 +52,16 @@
   text-decoration: underline;
   cursor: pointer;
 }
-.textLink:hover{
+.textLink:hover {
   scale: 1.05;
+}
+.passwordIcon {
+  position: relative;
+  top: 5px;
+  left: -30px;
+  cursor: pointer;
+}
+
+.none {
+  display: none;
 }
