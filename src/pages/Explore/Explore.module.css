@@ -190,6 +190,12 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.blogCardContainer{
+    width: 100%;
+    height: 30%;
+}
+
 .hashTagsContainer{
     height: 50vh;
     margin-top: 20px;

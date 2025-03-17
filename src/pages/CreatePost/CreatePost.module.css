@@ -5,32 +5,52 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
-
+.titleCreatePost{
+    font-size: 25px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
 .createFormContainer{
-    width: 50%;
+    width: 65%;
     height: 55%;
-
     border-radius: 5px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
+    position: relative;
 }
 
 .inputUploadContainer{
-    width: 35%;
+    width: 45%;
     height: 100%;
     border-radius: 10px;
     border: 2px dashed rgba(124, 124, 124, 0.699);
-    margin-right: 50px;
+
     background-color: rgba(235, 235, 235, 0.76);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
+    cursor: pointer;
+    position: relative;
 
+}
+.imgPreviewContainer{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+.imgPreview{
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+
+
+}
 .txtInputUpload{
     width: 90%;
     text-align: center;
@@ -38,7 +58,7 @@
 }
 
 .inputsTextContainer{
-    width: 65%;
+    width: 45%;
     height: 100%;
     position: relative;
 }
@@ -114,12 +134,14 @@
 }
 
 .optionsContainer{
-    background-color: #F0F0F0;
+    background-color: #f0f0f0;
     padding: 5px 0px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     color:#646464;
-
+    position: absolute;
+    width: 100%;
+    z-index: 1;
 }
 
 
@@ -149,4 +171,5 @@
     border-radius: 5px;
     color:white;
     font-weight: 600;
+    cursor: pointer;
 }

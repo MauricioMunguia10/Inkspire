@@ -64,9 +64,11 @@ const Dashboard = () => {
           <div className={styles.sectionRecientesContainer}>
             <p className={styles.titleSectionReciente}>Publicaciones Recientes</p>
             <div className={styles.elementosRecientesContainer}>
-              <BlogCard title="Super Bowl LIZ Showdown: Eagles Clash width chiefs in New Orleans" creator="@CarlitosBodoque1" imgBackground="https://images.immediate.co.uk/production/volatile/sites/3/2025/02/Super-Bowl-2025-stadium-5480adb.jpg?resize=1200%2C630" ></BlogCard>
-              <BlogCard title="Gulf of America Day Proclaimed by Trump" creator="@CarlitosBodoque2" imgBackground="https://irp.cdn-website.com/b44e0cd2/dms3rep/multi/gulf+of+america+map+3.jpg"></BlogCard>
-              <BlogCard title="Jalen Hurts 'Unbannable' Air Jordan Cleats Steal the Show at Super Bowl LIX "  creator="@CarlitosBodoque3" imgBackground="https://media.cnn.com/api/v1/images/stellar/prod/230417122441-01-jalen-hurts-file.jpg?c=original"></BlogCard>
+              <div className={styles.blogCardContainer}><BlogCard title="Super Bowl LIZ Showdown: Eagles Clash width chiefs in New Orleans" creator="@CarlitosBodoque1" imgBackground="https://images.immediate.co.uk/production/volatile/sites/3/2025/02/Super-Bowl-2025-stadium-5480adb.jpg?resize=1200%2C630" ></BlogCard></div>
+              <div className={styles.blogCardContainer}><BlogCard title="Gulf of America Day Proclaimed by Trump" creator="@CarlitosBodoque2" imgBackground="https://irp.cdn-website.com/b44e0cd2/dms3rep/multi/gulf+of+america+map+3.jpg"></BlogCard></div>
+              <div className={styles.blogCardContainer}><BlogCard title="Jalen Hurts 'Unbannable' Air Jordan Cleats Steal the Show at Super Bowl LIX "  creator="@CarlitosBodoque3" imgBackground="https://media.cnn.com/api/v1/images/stellar/prod/230417122441-01-jalen-hurts-file.jpg?c=original"></BlogCard></div>
+              
+
             </div>
           </div>
 
