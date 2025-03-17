@@ -18,8 +18,12 @@ const LogIn = ({ sendData }) => {
   const [passwordAlert, setPasswordAlert] = useState(false);
   const navigate = useNavigate();
 
-  const handleChangeSignIn = () => {
-    sendData(3);
+  const handleChangeSection = (arg) => {
+    if (arg === 4) {
+      sendData(4);
+    } else {
+      sendData(3);
+    }
   };
   const handleChange = (name, newValue) => {
     if (name === "email") {
@@ -109,13 +113,16 @@ const LogIn = ({ sendData }) => {
         <span className={styles.passwordIcon}>
           <FaEye color="gray" onClick={togglePasswordVisibility} />
         </span>
-        <p className={styles.textLinkPassword} onClick={handleChangeSignIn}>
+        <p
+          className={styles.textLinkPassword}
+          onClick={() => handleChangeSection(4)}
+        >
           ¿Olvidaste tu contraseña?
         </p>
         <Button className={styles.button} onClick={handleSignIn}>
           Iniciar Sesión
         </Button>
-        <p className={styles.textLink} onClick={handleChangeSignIn}>
+        <p className={styles.textLink} onClick={handleChangeSection}>
           ¿No tienes cuenta? Regístrate
         </p>
       </div>

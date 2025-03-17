@@ -4,14 +4,20 @@ import clsx from "clsx";
 import SignIn from "../../components/SignIn/SignIn";
 import LogIn from "../../components/LogIn/LogIn";
 import PrincipalCard from "../../components/PrincipalCard/PrincipalCard";
+import ModalPassword from "../../components/ModalPassword/ModalPassword";
 
 const Home = () => {
-  const [screen, setScreen] = useState(1); //1 Home 2 LogIn 3 SignIn
+  const [screen, setScreen] = useState(1); //1 Home 2 LogIn 3 SignIn 4 Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleChangeScreen = (arg) => {
     setScreen(arg);
   };
   const handleChangeSection = (arg) => {
-    setScreen(arg);
+    if (arg === 4) {
+      setIsModalOpen(true);
+    } else {
+      setScreen(arg);
+    }
   };
   return (
     <>
@@ -87,6 +93,10 @@ const Home = () => {
       >
         <LogIn sendData={handleChangeSection} />
       </div>
+      <ModalPassword
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </>
   );
 };
