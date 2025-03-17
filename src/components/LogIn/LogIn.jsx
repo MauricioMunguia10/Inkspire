@@ -6,9 +6,11 @@ import { FaEye } from "react-icons/fa";
 import { toast } from "react-toastify";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const LogIn = ({ sendData }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
+  const { login } = useAuth();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -57,11 +59,20 @@ const LogIn = ({ sendData }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    const result = await response.json();
+
     if (response.status === 201) {
+      const data = [
+        {
+          user: result.userInfo.user,
+          email: result.userInfo.email,
+          type_user: result.userInfo.type_user,
+        },
+      ];
+      login(data);
       sendNotification("Inicio de Sesión Exitoso", 1);
       navigate("/dashboard");
     } else {
-      const result = await response.json();
       const variable = result.message;
       if (typeof variable === "string") {
         sendNotification(variable, 2);
