@@ -32,19 +32,28 @@ const Home = () => {
             className={styles.logoFull}
           />
           <p
-            className={styles.menuButton}
+            className={clsx({
+              [styles.menuButton]: screen === 2 || screen === 3,
+              [styles.menuButtonBlue]: screen === 1,
+            })}
             onClick={() => handleChangeScreen(1)}
           >
             Inicio
           </p>
           <p
-            className={styles.menuButton}
+            className={clsx({
+              [styles.menuButton]: screen === 1 || screen === 3,
+              [styles.menuButtonBlue]: screen === 2,
+            })}
             onClick={() => handleChangeScreen(2)}
           >
             Iniciar Sesión
           </p>
           <p
-            className={styles.menuButton}
+            className={clsx({
+              [styles.menuButton]: screen === 1 || screen === 2,
+              [styles.menuButtonBlue]: screen === 3,
+            })}
             onClick={() => handleChangeScreen(3)}
           >
             Registrarse

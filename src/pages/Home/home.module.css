@@ -25,6 +25,13 @@
   top: 20px;
   cursor: pointer;
 }
+.menuButtonBlue {
+  position: relative;
+  top: 20px;
+  cursor: pointer;
+  color: rgb(102, 102, 230);
+  text-decoration: underline;
+}
 .half {
   width: 50%;
   height: 100%;
