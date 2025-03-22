@@ -4,7 +4,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import CreatePost from "../pages/CreatePost/CreatePost";
 import Profile from "../pages/Profile/Profile";
 import Saves from "../pages/Saves/Saves";
-import Admin from "../pages/admin/Admin";
+import Admin from "../pages/Administrator/Admin";
 import News from "../pages/News/News";
 
 const AppRoutes = () => {
