@@ -16,4 +16,5 @@
   width: calc(100% - 80px);
   font-size: 20px;
   font-weight: 300;
+  text-align: center;
 }
