@@ -10,6 +10,7 @@ export default function Profile (){
     const { user } = useParams();
     console.log(user)
     const [blogs, setBlogs] = useState([]);
+    const [users, setUsers] = useState([]);
     const [blogVisible, setBlogVisible] = useState(false);
     const [blogCategory, setBlogCategory] = useState()
     const [blogTitle, setBlogTitle] = useState()
@@ -56,10 +57,24 @@ export default function Profile (){
         }
       };
 
-    
+      const mostrarDatosUsuarios = async (event) => {
+        console.log("mostrandoDAtos")
+        try {
+          const response = await fetch("http://localhost:5000/users", {
+            method: "GET"
+          });
+      
+          const data = await response.json();
+          console.log(data)
+          setUsers(data);
+        } catch (error) {
+          console.error("Error al enviar datos:", error);
+        }
+      };
 useEffect(() => {
   mostrarDatosPost();
   mostrarDatosUser() 
+  mostrarDatosUsuarios()
   console.log(user)
   }, []);
 
@@ -72,7 +87,14 @@ useEffect(() => {
     setBlogContent(content)
     setBlogImg(img)
   }
+  const getRandomUsers = (users) => {
+    console.log(users)
+    const shuffledUsers = users.sort(() => Math.random() - 0.5);
+    
+    return shuffledUsers.slice(0, 3);
+  };
 
+  const randomBlogs = getRandomUsers(users);
     return(
         <div className={styles.ProfileContainer}>
             <div className={styles.sideBarContainer}>
@@ -114,9 +136,11 @@ useEffect(() => {
             <div className={styles.rightContainer}>
                     <div className={styles.whoToFollowContainer}>
                      <p className={styles.titleWTF}>Recomendados</p>
-                     <WhoToFollow user="dany125" name="Daniel"></WhoToFollow>
-                     <WhoToFollow user="MMG1009" name="Mauricio"></WhoToFollow>
-                     <WhoToFollow user="mauricio" name="Mauricio"></WhoToFollow>
+                     {
+                        randomBlogs.map((user, index)=>(
+                          <WhoToFollow user={user.user} name={user.name} key={index}></WhoToFollow>
+                        ))
+                      }
                     </div>
             </div>
 

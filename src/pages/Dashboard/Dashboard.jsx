@@ -11,6 +11,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { idPost } = useParams();
   const [blogs, setBlogs] = useState([]);
+  const [users, setUsers] = useState([]);
   const [blogVisible, setBlogVisible] = useState(false);
   const [blogCategory, setBlogCategory] = useState()
   const [blogId, setBlogId] = useState()
@@ -18,6 +19,7 @@ const Dashboard = () => {
   const [blogCreator, setBlogCreator] = useState()
   const [blogImg, setBlogImg] = useState()
   const [blogContent, setBlogContent] = useState()
+  
   const mostrarDatos = async (event) => {
       console.log("mostrandoDAtos")
       try {
@@ -33,13 +35,35 @@ const Dashboard = () => {
       }
     };
        
-  
+    const mostrarDatosUsuarios = async (event) => {
+      console.log("mostrandoDAtos")
+      try {
+        const response = await fetch("http://localhost:5000/users", {
+          method: "GET"
+        });
+    
+        const data = await response.json();
+        console.log(data)
+        setUsers(data);
+      } catch (error) {
+        console.error("Error al enviar datos:", error);
+      }
+    };
       
   useEffect(() => {
       mostrarDatos(); // Se ejecuta una sola vez al montar
+      mostrarDatosUsuarios()
       console.log(navigate)
     }, []);
 
+    const getRandomUsers = (users) => {
+      console.log(users)
+      const shuffledUsers = users.sort(() => Math.random() - 0.5);
+      
+      return shuffledUsers.slice(0, 3);
+    };
+  
+    const randomBlogs = getRandomUsers(users);
     function showDataBlog(id, category, title, creator, content, img){
       setBlogId(id)
       setBlogVisible(true)
@@ -97,10 +121,12 @@ const Dashboard = () => {
       <div className={styles.right}>
         <div className={styles.whoToFollowContainer}>
                     <p className={styles.titleWTF}>Recomendados</p>
-                    <WhoToFollow user="dany125" name="Daniel"></WhoToFollow>
-                    <WhoToFollow user="MMG1009" name="Mauricio"></WhoToFollow>
-                    <WhoToFollow user="mauricio" name="Mauricio"></WhoToFollow>
-                   </div>
+                    {
+                      randomBlogs.map((user, index)=>(
+                        <WhoToFollow user={user.user} name={user.name} key={index}></WhoToFollow>
+                      ))
+                    }
+          </div>
       </div>
 
       <div className={styles.displayBlogComponentContainer}

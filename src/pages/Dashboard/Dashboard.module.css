@@ -27,7 +27,6 @@
   position: fixed;
   top: 100px;
   left: 500px;
-  max-height: 100vh;
   overflow-y: scroll;
   width: 920px;
   display: grid;
