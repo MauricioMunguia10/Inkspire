@@ -101,11 +101,11 @@ useEffect(() => {
       const container = containerRef.current;
       if (!container) return;
 
-      // Verifica si el usuario ha llegado al final del contenedor
+      
       if (container.scrollHeight - container.scrollTop === container.clientHeight) {
-        setElementVisible(true); // Muestra el elemento cuando el scroll llega al final
+        setElementVisible(true); 
       } else {
-        setElementVisible(false); // Oculta el elemento cuando el scroll no está al final
+        setElementVisible(false); 
       }
     };
 
@@ -113,7 +113,7 @@ useEffect(() => {
     container.addEventListener('scroll', handleScroll);
 
     return () => {
-      container.removeEventListener('scroll', handleScroll); // Limpieza del listener
+      container.removeEventListener('scroll', handleScroll); 
     };
   }, []);
 
