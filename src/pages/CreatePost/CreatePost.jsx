@@ -61,9 +61,14 @@ export default function CreatePost(){
       
           const data = await response.json();
           console.log("Usuario agregado:", data);
+          if (response.ok) {
+            window.location.href = `/Profile/${user}`;
+        }
         } catch (error) {
           console.error("Error al enviar datos:", error);
         } 
+
+        
       };
       
       const mostrarDatos = async (event) => {
@@ -109,10 +114,11 @@ export default function CreatePost(){
                             
                         </div>
                         <div className={styles.optionsContainer}  style={optionsVisible ? {display:'block'} : {display:'none'}}>
-                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Opcion1'), setOptionsVisible(false), setCategoria("Opcion1")}}>Opcion1</p>
-                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Opcion2'), setOptionsVisible(false), setCategoria("Opcion2")}}>Opcion2</p>
-                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Opcion3'), setOptionsVisible(false), setCategoria("Opcion3")}}>Opcion3</p>
-                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Opcion4'), setOptionsVisible(false), setCategoria("Opcion4")}}>Opcion4</p>
+                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Ciencia Ficción'), setOptionsVisible(false), setCategoria("Ciencia Ficción")}}>Ciencia Ficción</p>
+                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Deportes'), setOptionsVisible(false), setCategoria("Deportes")}}>Deportes</p>
+                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Espectáculos'), setOptionsVisible(false), setCategoria("Espectáculos")}}>Espectáculos</p>
+                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Sociales'), setOptionsVisible(false), setCategoria("Sociales")}}>Sociales</p>
+                            <p className={styles.option} onClick={()=>{setTextSelectComponente('Psicología'), setOptionsVisible(false), setCategoria("Psicología")}}>Psicología</p>
                         </div>
                     </div>   
 

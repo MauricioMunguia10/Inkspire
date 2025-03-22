@@ -3,10 +3,12 @@ import BlogCard from "../../components/BlogCard/BlogCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import BlogDisplay from "../../components/BlogDisplay/BlogDisplay";
-
-
+import SideBar from "../../components/SideBar/SideBar";
+import { useParams } from 'react-router-dom';
+import WhoToFollow from "../../components/WhoToFollowCard/WhoToFollowCard";
 export default function Profile (){
-    const user = localStorage.getItem("user");
+    const { user } = useParams();
+    console.log(user)
     const [blogs, setBlogs] = useState([]);
     const [blogVisible, setBlogVisible] = useState(false);
     const [blogCategory, setBlogCategory] = useState()
@@ -14,7 +16,11 @@ export default function Profile (){
     const [blogCreator, setBlogCreator] = useState()
     const [blogImg, setBlogImg] = useState()
     const [blogContent, setBlogContent] = useState()
-    const mostrarDatos = async (event) => {
+    const [countPost, setCountPost] = useState(0)
+    const [nombreUsuario, setNombreUsuario] = useState(0)
+    const [nickName, setNickName] = useState(0)
+    const [createdAt, setCreatedAt] = useState()
+    const mostrarDatosPost = async (event) => {
 
         try {
           const response = await fetch(`http://localhost:5000/postsUser?user=${encodeURIComponent(user)}`, {
@@ -24,15 +30,37 @@ export default function Profile (){
           const data = await response.json();
           console.log(data)
           setBlogs(data);
+          setCountPost(data.length)
+          
         } catch (error) {
           console.error("Error al enviar datos:", error);
         }
       };
      
+      const mostrarDatosUser = async (event) => {
+
+        try {
+          const response = await fetch(`http://localhost:5000/user?user=${encodeURIComponent(user)}`, {
+            method: "GET"
+          });
+      
+          const data = await response.json();
+          console.log(data)
+          const createdAtDate = new Date(data[0].createdAt);
+          const onlyDate = createdAtDate.toLocaleDateString();
+          setNombreUsuario(data[0].name)
+          setNickName(data[0].user)
+          setCreatedAt(onlyDate)
+        } catch (error) {
+          console.error("Error al enviar datos:", error);
+        }
+      };
 
     
 useEffect(() => {
-    mostrarDatos(); // Se ejecuta una sola vez al montar
+  mostrarDatosPost();
+  mostrarDatosUser() 
+  console.log(user)
   }, []);
 
 
@@ -48,39 +76,28 @@ useEffect(() => {
     return(
         <div className={styles.ProfileContainer}>
             <div className={styles.sideBarContainer}>
-
+              <SideBar/>
             </div>
             <div className={styles.centerContainer}>
                 <div className={styles.headerProfile}>
-                    <p className={styles.userName}>Daniel Trejo Velázquez</p>
-                    <p className={styles.countPosts}>0 posts</p>
+                    <p className={styles.userName}>{nombreUsuario}</p>
+                    <p className={styles.countPosts}>{countPost} posts</p>
                 </div>
 
-                <div className={styles.imagesProfile}>
-                    <div className={styles.banner}></div>
-                    <div className={styles.imgProfileAndEditBtn}>
-                        <div className={styles.ImgContainer}>
-                            <img src="https://pbs.twimg.com/profile_images/1886512780116942852/mhjKy614_400x400.png" alt="" className={styles.imgProfile}/>
-                        </div>
-                        <button className={styles.editBtn}>
-                            Edit Profile
-                        </button>
-                    </div> 
-                </div>
+              
 
                 <div className={styles.userData}>
-                    <p className={styles.userName}>Daniel Trejo Velázquez</p>
-                    <p className={styles.userNick}>@DanielTrej97144</p>
-                    <p className={styles.userJoinDate}>Se unió en Febrero 2025</p>
+                    <p className={styles.userNick}>@{nickName}</p>
+                    <p className={styles.userJoinDate}>Se unió en {createdAt}</p>
                 </div>
 
                 <div className={styles.blogsContainer}>
                    <p className={styles.titleBlogs}>Tus Blogs</p>
                      { 
                         blogs.map((element, index) => (
-                            <div className={styles.blogCardContainer}>
+                            <div className={styles.blogCardContainer} key={index}>
+                            
                             <BlogCard
-                              key={index}
                               title={element.title}
                               imgBackground={element.imgUrl}
                               creator = {element.creator}
@@ -95,7 +112,12 @@ useEffect(() => {
                 
             </div>
             <div className={styles.rightContainer}>
-
+                    <div className={styles.whoToFollowContainer}>
+                     <p className={styles.titleWTF}>Recomendados</p>
+                     <WhoToFollow user="dany125" name="Daniel"></WhoToFollow>
+                     <WhoToFollow user="MMG1009" name="Mauricio"></WhoToFollow>
+                     <WhoToFollow user="mauricio" name="Mauricio"></WhoToFollow>
+                    </div>
             </div>
 
 

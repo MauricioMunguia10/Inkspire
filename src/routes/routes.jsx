@@ -14,7 +14,7 @@ const AppRoutes = () => {
       <Route path="/dashboard/:idPost" element={<Dashboard />} />
       <Route path="/explore" element={<Explore />} />
       <Route path="/create" element={<CreatePost />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/:user" element={<Profile />} />
       <Route path="/Saves" element={<Saves />} />
     </Routes>
   );

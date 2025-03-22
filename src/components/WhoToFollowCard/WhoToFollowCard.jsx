@@ -1,18 +1,18 @@
 import styles from "./WhoToFollowCard.module.css";
 
-export default function WhoToFollow({imgURL}){
+export default function WhoToFollow({imgURL, name, user}){
     return(
         <>
             
 
 
               <div className={styles.wtfCard}>
-                <img src={imgURL} alt="" className={styles.imgProfileWTF}/>
+                
                 <div className={styles.infoProfileHTF}>
-                  <p className={styles.userNameWTFCard}>National Geographic</p>
-                  <p className={styles.atNameWTFCard}>@NatGeo</p>
+                  <p className={styles.userNameWTFCard}>{name}</p>
+                  <p className={styles.atNameWTFCard}>@{user}</p>
                 </div>
-                <button className={styles.WTFbutton}>Follow</button>
+                <a className={styles.WTFbutton} href={`/profile/${user}`}>Ver Perfil</a>
               </div>
 
 

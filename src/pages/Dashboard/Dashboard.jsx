@@ -5,6 +5,7 @@ import BlogCard from "../../components/BlogCard/BlogCard";
 import BlogDisplay from "../../components/BlogDisplay/BlogDisplay";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useNavigate, useParams } from 'react-router-dom';
+import WhoToFollow from "../../components/WhoToFollowCard/WhoToFollowCard";
 const Dashboard = () => {
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Dashboard = () => {
       
   useEffect(() => {
       mostrarDatos(); // Se ejecuta una sola vez al montar
+      console.log(navigate)
     }, []);
 
     function showDataBlog(id, category, title, creator, content, img){
@@ -52,7 +54,7 @@ const Dashboard = () => {
 
     async function savePost(postId, username) {
       console.log(postId)
-      console.log(username)
+      
       try {
         const response = await fetch('http://localhost:5000/postsSaved/add', {
           method: 'PUT',
@@ -92,7 +94,14 @@ const Dashboard = () => {
 
         
       </div>
-      <div className={styles.right}></div>
+      <div className={styles.right}>
+        <div className={styles.whoToFollowContainer}>
+                    <p className={styles.titleWTF}>Recomendados</p>
+                    <WhoToFollow user="dany125" name="Daniel"></WhoToFollow>
+                    <WhoToFollow user="MMG1009" name="Mauricio"></WhoToFollow>
+                    <WhoToFollow user="mauricio" name="Mauricio"></WhoToFollow>
+                   </div>
+      </div>
 
       <div className={styles.displayBlogComponentContainer}
           style={blogVisible ? { display: "flex" } : { display: "none" }}

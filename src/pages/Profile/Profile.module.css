@@ -8,6 +8,7 @@
 .sideBarContainer{
     width: 33%;
     height: 100%;
+    padding-top: 50px;
 }
 
 .centerContainer{
@@ -22,6 +23,7 @@
 .rightContainer{
     width: 33%;
     height: 100%;
+    position: relative;
 }
 .headerProfile{
     padding:5px 15px ;
@@ -115,7 +117,7 @@
 
 .blogsContainer{
     margin-top: 30px;
-    height: 55%;
+    height: 85%;
     width: 100%;
     padding: 0px 15px;
     & > *{
@@ -149,3 +151,22 @@
     align-items: center;
     justify-content: center;
 }
+
+.whoToFollowContainer{
+    width: 75%;
+    height: 300px;
+    
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.329);
+    border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .titleWTF{
+    color:white;
+    font-weight: 500;
+  }
