@@ -42,7 +42,7 @@
 
 .center .item {
   background-color: transparent;
-  border: 1px solid rgb(156, 156, 156);
+
   border-radius: 8px;
   padding: 10px;
   
@@ -78,4 +78,33 @@
   height: calc(100vh - 40px);
   width: 460px;
   border-left: 1px solid darkgray;
+}
+
+.displayBlogComponentContainer{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.219);
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnGuardarContainer{
+  height: 100px;
+  width: 300px;
+}
+
+.btnGuardarPost{
+  height: 50px;
+  background-color: #272626;
+  border: none;
+  border-radius: 3px;
+  width: 50px;
+  margin-left: 30px;
+  position: absolute;
+  top: 50px;
+  color: #f0ac19;
+  cursor:pointer;
 }

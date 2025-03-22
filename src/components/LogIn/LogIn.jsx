@@ -70,6 +70,8 @@ const LogIn = ({ sendData }) => {
         },
       ];
       login(data);
+      localStorage.setItem("user", data[0].user);
+
       sendNotification("Inicio de Sesión Exitoso", 1);
       navigate("/dashboard");
     } else {

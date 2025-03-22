@@ -4,11 +4,9 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { useState, useRef, useEffect } from 'react';
 import {useDropzone} from 'react-dropzone';
-import {useAuth} from "../../context/AuthContext"
 
 export default function CreatePost(){
-  const {user} = useAuth();
-  console.log(user[0].user)
+  const user = localStorage.getItem("user");
   const [files, setFiles] = useState([]);
   const {getRootProps, getInputProps} = useDropzone({
     accept: {
@@ -53,10 +51,10 @@ export default function CreatePost(){
         formData.append("categoria", categoria);
         formData.append("contenido", contenido);
         formData.append("image", files[0]);
-        formData.append("creator", user[0].user);
+        formData.append("creator", user);
       
         try {
-          const response = await fetch("http://localhost:5001/posts", {
+          const response = await fetch("http://localhost:5000/posts", {
             method: "POST",
             body: formData,
           });
@@ -71,7 +69,7 @@ export default function CreatePost(){
       const mostrarDatos = async (event) => {
 
         try {
-          const response = await fetch("http://localhost:5001/posts", {
+          const response = await fetch("http://localhost:5000/posts", {
             method: "GET"
           });
       

@@ -3,10 +3,10 @@ import BlogCard from "../../components/BlogCard/BlogCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import BlogDisplay from "../../components/BlogDisplay/BlogDisplay";
-import {useAuth} from "../../context/AuthContext"
+
 
 export default function Profile (){
-    const {user} = useAuth();
+    const user = localStorage.getItem("user");
     const [blogs, setBlogs] = useState([]);
     const [blogVisible, setBlogVisible] = useState(false);
     const [blogCategory, setBlogCategory] = useState()
@@ -17,7 +17,7 @@ export default function Profile (){
     const mostrarDatos = async (event) => {
 
         try {
-          const response = await fetch(`http://localhost:5001/postsUser?user=${encodeURIComponent(user[0].user)}`, {
+          const response = await fetch(`http://localhost:5000/postsUser?user=${encodeURIComponent(user)}`, {
             method: "GET"
           });
       
