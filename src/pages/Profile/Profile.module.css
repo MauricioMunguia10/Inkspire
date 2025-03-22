@@ -120,6 +120,7 @@
     height: 85%;
     width: 100%;
     padding: 0px 15px;
+    position: relative;
     & > *{
         margin-bottom: 20px;
     }
@@ -169,4 +170,27 @@
   .titleWTF{
     color:white;
     font-weight: 500;
+  }
+
+  .AddPostElement{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(68, 68, 68, 0.452);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btnAgregarPost{
+    background-color: white;
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
   }

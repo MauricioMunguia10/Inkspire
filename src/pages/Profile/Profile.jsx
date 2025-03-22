@@ -1,6 +1,6 @@
 import styles from "./Profile.module.css";
 import BlogCard from "../../components/BlogCard/BlogCard";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import BlogDisplay from "../../components/BlogDisplay/BlogDisplay";
 import SideBar from "../../components/SideBar/SideBar";
@@ -21,6 +21,8 @@ export default function Profile (){
     const [nombreUsuario, setNombreUsuario] = useState(0)
     const [nickName, setNickName] = useState(0)
     const [createdAt, setCreatedAt] = useState()
+    const [elementVisible, setElementVisible] = useState(false);
+    const containerRef = useRef(null);
     const mostrarDatosPost = async (event) => {
 
         try {
@@ -93,6 +95,27 @@ useEffect(() => {
     
     return shuffledUsers.slice(0, 3);
   };
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      // Verifica si el usuario ha llegado al final del contenedor
+      if (container.scrollHeight - container.scrollTop === container.clientHeight) {
+        setElementVisible(true); // Muestra el elemento cuando el scroll llega al final
+      } else {
+        setElementVisible(false); // Oculta el elemento cuando el scroll no está al final
+      }
+    };
+
+    const container = containerRef.current;
+    container.addEventListener('scroll', handleScroll);
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll); // Limpieza del listener
+    };
+  }, []);
 
   const randomBlogs = getRandomUsers(users);
     return(
@@ -113,7 +136,7 @@ useEffect(() => {
                     <p className={styles.userJoinDate}>Se unió en {createdAt}</p>
                 </div>
 
-                <div className={styles.blogsContainer}>
+                <div className={styles.blogsContainer} ref={containerRef}>
                    <p className={styles.titleBlogs}>Tus Blogs</p>
                      { 
                         blogs.map((element, index) => (
@@ -129,7 +152,11 @@ useEffect(() => {
                           ))
                     }
                     
-                  
+                    {elementVisible && (
+                    <div className={styles.AddPostElement}>
+                      <a href="/create" className={styles.btnAgregarPost}>¡Agrega un nuevo post!</a>
+                    </div>
+                  )}
                 </div>
                 
             </div>
